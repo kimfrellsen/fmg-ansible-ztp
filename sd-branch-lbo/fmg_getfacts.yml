@@ -1,0 +1,14 @@
+---
+- name: PROVISION FORTIMANAGER WITH SHARED COMPONENTS
+  hosts: fmg_gcp
+  connection: httpapi
+  gather_facts: false
+
+  vars:
+
+  tasks:
+     - name: GET ONLY SYSTEM FACTS
+       fortimgr_facts:
+          host: "{{ ansible_host }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_password }}"

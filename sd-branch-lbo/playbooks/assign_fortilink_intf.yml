@@ -1,0 +1,54 @@
+  - name: REMOVE {{ fortilink_intf }} FROM INTERNAL TO FORTILINK
+    fortimgr_jsonrpc_request:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      method: delete
+      params: [
+        {
+          url: "/pm/config/device/{{ device_name }}/global/system/virtual-switch/{{ local_switch }}/port/{{ fortilink_intf }}",
+          data: {
+          },
+        },
+      ]
+
+  - name: UPDATE {{ fortilink_intf }} FROM INTERNAL TO FORTILINK
+    fortimgr_jsonrpc_request:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      method: update
+      params: [
+        {
+          url: "/pm/config/device/{{ device_name }}/global/system/virtual-switch/fortilink",
+          data: {
+            port: [
+              {
+                "name": "{{ fortilink_intf }}",
+               },
+            ]
+          },
+        },
+      ]
+
+  - name: INSTALL ON DEVICE {{ device_name }}
+    fortimgr_jsonrpc_request:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      method: exec
+      params: [
+        {
+          url: "/securityconsole/install/device",
+          data: 
+            {
+              adom: "{{ adom_name }}",
+              scope: [
+                {
+                  name: "{{ device_name }}",
+                  vdom: "root",
+                },
+              ]
+            },
+        },
+      ]

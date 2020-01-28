@@ -1,0 +1,20 @@
+- name: ASSIGN MODE DEVICE "{{ device_name }}" TO FORTISWITCH TEMPLATE "{{ fsw_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: update
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/obj/fsp/managed-switch/{{ fsw_sn }}",
+        data: {
+          template: "{{ fsw_name }}",
+        },
+        scope member: [
+        {
+            name: "{{ device_name }}",
+            vdom: "{{ device_vdom_name }}",
+          },
+        ],
+      },
+    ]

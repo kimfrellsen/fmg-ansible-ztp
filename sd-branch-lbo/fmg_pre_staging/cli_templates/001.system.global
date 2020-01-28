@@ -1,0 +1,8 @@
+config system global
+set timezone 28
+set hostname fgt-$(adom_name)-branch$(branch_number)
+end
+config system admin
+edit admin
+set password admin
+end

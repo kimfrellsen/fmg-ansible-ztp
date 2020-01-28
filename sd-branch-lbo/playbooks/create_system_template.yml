@@ -1,0 +1,92 @@
+- name: CREATE SYSTEM TEMPLATE "{{ system_template_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/devprof/adom/{{ adom_name }}",
+        data: {
+          description: "System Template created via Ansible",
+          name: "{{ system_template_name }}",
+          type: devprof,
+          "enabled options": [
+            dns,
+            admin,
+            log,
+          ],
+        },
+      },
+    ]
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - SYSTEM.DNS
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: set
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/devprof/{{ system_template_name }}/system/dns",
+        data: {
+          primary: 8.8.8.8,
+        },
+      },
+    ]
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - SYSTEM.GLOBAL
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: set
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/devprof/{{ system_template_name }}/system/global",
+        data: {
+          admintimeout: 480,
+          gui-ipv6: enable,
+          gui-theme: mariner,
+          switch-controller: enable
+        },
+      },
+    ]
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: set
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/devprof/{{ system_template_name }}/device/profile/fortianalyzer",
+        data: {
+          managed-sn: "",
+          target: 4,
+          target-ip: "{{ ansible_host }}",
+          target-sn: "",
+        },
+      },
+    ]
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER SETTINGS
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: set
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/devprof/{{ system_template_name }}/log/fortianalyzer/setting",
+        data: {
+          access-config: enable,
+          certificate-verification: disable,
+          ips-archive: enable,
+          reliable: enable,
+          upload-option: realtime,
+        },
+      },
+    ]
+

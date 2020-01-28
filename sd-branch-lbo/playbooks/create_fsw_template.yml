@@ -1,0 +1,61 @@
+- name: CREATE FORTISWITCH TEMPLATE "{{ fsw_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/obj/switch-controller/managed-switch",
+        data: {
+          name: "{{ fsw_name }}",
+          switch-id: "{{ fsw_name }}",
+          _platform: "{{ fsw_name }}",
+          description: "FortiSwitch Template created via Ansible",
+        },
+      },
+    ]
+
+- name: POPULATE FORTISWITCH TEMPLATE "{{ fsw_name }}" WITH PORT CONFIGURATION
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/obj/switch-controller/managed-switch/{{ fsw_name }}/ports",
+        data: {
+          port-name: "{{ item.port_name }}",
+              allowed-vlans: [
+                default.qtnport,
+              ],
+              untagged-vlans: [
+                default.qtnport,
+              ],
+              vlan: "{{ item.vlan }}",
+        },
+      },
+    ]
+
+  with_items:
+    - port_name: port1
+      vlan: [default.vswport]
+    - port_name: port2
+      vlan: [vlan_mgmt_fap]
+    - port_name: port3
+      vlan: [vlan_marketing]
+    - port_name: port4
+      vlan: [vlan_support]
+    - port_name: port5
+      vlan: [vlan_finance]
+    - port_name: port6
+      vlan: [default.vswport]
+    - port_name: port7
+      vlan: [default.vswport]
+    - port_name: port8
+      vlan: [default.vswport]
+    - port_name: port9
+      vlan: [default.vswport]
+    - port_name: port10
+      vlan: [default.vswport]

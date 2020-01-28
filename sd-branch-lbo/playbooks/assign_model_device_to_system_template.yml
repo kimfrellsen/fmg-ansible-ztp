@@ -1,0 +1,17 @@
+- name: ASSIGN MODEL DEVICE "{{ device_name }}" TO SYSTEM TEMPLATE "{{ system_template_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/devprof/adom/{{ adom_name }}/{{ system_template_name }}/scope member",
+        data: [
+          {
+            name: "{{ device_name }}",
+            vdom: "{{ device_vdom_name }}",
+          },
+        ],
+      },
+    ]

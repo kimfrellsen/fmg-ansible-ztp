@@ -1,0 +1,119 @@
+- name: CREATE SD-WAN TEMPLATE "{{ sdwan_template_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/wanprof/adom/{{ adom_name }}",
+        data: [
+        {
+            name: "{{ sdwan_template_name }}",
+            description: "SD-WAN Template created via Ansible",
+            type: wanprof,
+          },
+        ],
+      },
+    ]
+
+- name: ADDING INTERFACE MEMBERS IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/virtual-wan-link/members",
+        data: [
+          {
+            _dynamic-member: [
+              "{{ sdwan_isp1 }}",
+            ],
+          },
+          {
+            _dynamic-member: [
+               "{{ sdwan_isp2 }}",
+            ],
+          },
+        ],
+      },
+    ]
+
+- name: ADDING HEALTH CHECK "{{ sdwan_health_check_name }}" IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/virtual-wan-link/health-check",
+        data: {
+          name: "{{ sdwan_health_check_name }}",
+          _dynamic-server: [
+            "{{ sdwan_health_check_name }}",
+          ],
+          members: [
+            "1", "2",
+          ],
+        },
+      },
+    ]
+
+- name: ADDING HEALTH CHECK "{{ sdwan_health_check_name_O365 }}" IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/virtual-wan-link/health-check",
+        data: {
+          name: "{{ sdwan_health_check_name_O365 }}",
+          _dynamic-server: [
+            "{{ sdwan_health_check_name_O365 }}",
+          ],
+          members: [
+            "1", "2",
+          ],
+          protocol: [
+            "http",
+          ],
+        },
+      },
+    ]
+
+
+- name: ADDING SD-WAN RULE "{{ sdwan_health_check_name_O365 }}" IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/virtual-wan-link/service",
+        data: [
+        {
+          name: "Office365",
+          internet-service: 1,
+          addr-mode: 7,
+          health-check: [
+              "Office365",
+          ],
+          internet-service-id: [
+              "327782",
+          ],
+          mode: 3,
+          priority-members: [
+              "1",
+              "2",
+          ],
+          role: 3,
+          },
+        ],
+      },
+    ]

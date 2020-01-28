@@ -1,0 +1,9 @@
+config system interface
+edit $(isp1_intf)
+append allowaccess https http ssh
+next
+edit $(isp2_intf)
+append allowaccess https http ssh
+next
+end
+

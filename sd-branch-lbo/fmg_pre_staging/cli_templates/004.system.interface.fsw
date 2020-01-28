@@ -1,0 +1,11 @@
+config system interface
+edit vlan_marketing
+set ip 10.2.$(branch_number).99/24
+next
+edit vlan_support
+set ip 10.3.$(branch_number).99/24
+next
+edit vlan_finance
+set ip 10.4.$(branch_number).99/24
+next
+end

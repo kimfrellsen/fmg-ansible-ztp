@@ -1,0 +1,9 @@
+---
+- name: DELETE BRANCH1
+  hosts: fmg_gcp
+  connection: httpapi
+  gather_facts: False
+  vars:
+    install_sleep_time: 10
+  tasks:
+    - import_tasks: ../playbooks/delete_device.yml

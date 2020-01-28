@@ -1,0 +1,38 @@
+- name: ADD FORTIAP SSID FOR PRODUCTION TRAFFIC
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/obj/wireless-controller/vap",
+        data: {
+          name: "{{ item.name }}",
+          _centmgmt: enable,
+          _intf_ip: [
+            0.0.0.0,
+            0.0.0.0,
+          ],
+          _intf_allowaccess: [
+            ping,
+            ssh,
+            https,
+
+            http,
+            ],
+          ssid: "{{ item.ssid }}",
+          schedule: always,
+          passphrase: "123456789012",
+          quarantine: disable,
+        },
+      },
+    ]
+
+  with_items:
+    - name: ssid_marketing
+      ssid: "{{ adom_name }}_marketing"
+    - name: ssid_support
+      ssid: "{{ adom_name }}_support"
+    - name: ssid_finance
+      ssid: "{{ adom_name }}_finance"

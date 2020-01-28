@@ -1,0 +1,22 @@
+config system dhcp server
+edit "6"
+set interface "dmz"
+set dns-service default
+set ntp-service local
+set timezone-option default
+set default-gateway 10.0.0.99
+set netmask 255.255.255.0
+config ip-range
+edit 1
+set start-ip 10.0.0.1
+set end-ip 10.0.0.98
+next
+edit 2
+set start-ip 10.0.0.100
+set end-ip 10.0.0.254
+next
+end
+set vci-match enable
+set vci-string "FortiSwitch"
+next
+end

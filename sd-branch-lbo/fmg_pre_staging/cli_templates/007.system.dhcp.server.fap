@@ -1,0 +1,59 @@
+config system dhcp server 
+edit "10"
+set dns-service default
+set ntp-service default
+set default-gateway 10.20.$(branch_number).99
+set netmask 255.255.255.0
+set interface "ssid_marketing"
+set timezone-option default
+config ip-range
+edit 1
+set start-ip 10.20.$(branch_number).1
+set end-ip 10.20.$(branch_number).98
+next
+edit 2
+set start-ip 10.20.$(branch_number).100
+set end-ip 10.20.$(branch_number).254
+next
+end
+next
+
+edit "11"
+set dns-service default
+set ntp-service default
+set default-gateway 10.30.$(branch_number).99
+set netmask 255.255.255.0
+set interface "ssid_support"
+set timezone-option default
+config ip-range
+edit 1
+set start-ip 10.30.$(branch_number).1
+set end-ip 10.30.$(branch_number).98
+next
+edit 2
+set start-ip 10.30.$(branch_number).100
+set end-ip 10.30.$(branch_number).254
+next
+end
+next
+
+edit "12"
+set dns-service default
+set ntp-service default
+set default-gateway 10.40.$(branch_number).99
+set netmask 255.255.255.0
+set interface "ssid_finance"
+set timezone-option default
+config ip-range
+edit 1
+set start-ip 10.40.$(branch_number).1
+set end-ip 10.40.$(branch_number).98
+next
+edit 2
+set start-ip 10.40.$(branch_number).100
+set end-ip 10.40.$(branch_number).254
+next
+end
+next
+
+end

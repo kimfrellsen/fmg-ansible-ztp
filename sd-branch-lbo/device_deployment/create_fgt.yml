@@ -1,0 +1,20 @@
+---
+- name: DEPLOY BRANCH1
+  hosts: fmg_gcp
+  connection: httpapi
+  gather_facts: False
+  vars:
+    install_sleep_time: 10
+  tasks:
+    - import_tasks: ../playbooks/create_model_device.yml
+    - import_tasks: ../playbooks/initialize_model_device_meta_fields.yml
+    - import_tasks: ../playbooks/move_spoke_model_device_in_device_group.yml
+    - import_tasks: ../playbooks/assign_model_device_to_system_template.yml
+    - import_tasks: ../playbooks/assign_model_device_to_sdwan_template.yml
+    - import_tasks: ../playbooks/add_fsw_to_model_device.yml
+    - import_tasks: ../playbooks/assign_model_device_to_fsw_template.yml
+    - import_tasks: ../playbooks/add_fap_to_model_device.yml
+    - import_tasks: ../playbooks/assign_model_device_to_fap_profile.yml
+    - import_tasks: ../playbooks/assign_model_device_to_cli_template_group.yml
+    - import_tasks: ../playbooks/assign_fortilink_intf.yml
+    - import_tasks: ../playbooks/install_policy_package_production.yml

@@ -1,0 +1,21 @@
+- name: CREATE SDWAN MEMBERS
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/obj/dynamic/virtual-wan-link/members",
+        data: {
+          name: "{{ item.name }}",
+          interface: "{{ item.interface }}",
+        },
+      },
+    ]
+
+  with_items:
+    - name: "{{ sdwan_isp1 }}"
+      interface: "{{ isp1_intf }}"
+    - name: "{{ sdwan_isp2 }}"
+      interface: "{{ isp2_intf }}"

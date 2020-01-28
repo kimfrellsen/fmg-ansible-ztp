@@ -1,0 +1,59 @@
+config system dhcp server 
+edit "7"
+set dns-service default
+set ntp-service default
+set default-gateway 10.2.$(branch_number).99
+set netmask 255.255.255.0
+set interface "vlan_marketing"
+set timezone-option default
+config ip-range
+edit 1
+set start-ip 10.2.$(branch_number).1
+set end-ip 10.2.$(branch_number).98
+next
+edit 2
+set start-ip 10.2.$(branch_number).100
+set end-ip 10.2.$(branch_number).254
+next
+end
+next
+
+edit "8"
+set dns-service default
+set ntp-service default
+set default-gateway 10.3.$(branch_number).99
+set netmask 255.255.255.0
+set interface "vlan_support"
+set timezone-option default
+config ip-range
+edit 1
+set start-ip 10.3.$(branch_number).1
+set end-ip 10.3.$(branch_number).98
+next
+edit 2
+set start-ip 10.3.$(branch_number).100
+set end-ip 10.3.$(branch_number).254
+next
+end
+next
+
+edit "9"
+set dns-service default
+set ntp-service default
+set default-gateway 10.4.$(branch_number).99
+set netmask 255.255.255.0
+set interface "vlan_finance"
+set timezone-option default
+config ip-range
+edit 1
+set start-ip 10.4.$(branch_number).1
+set end-ip 10.4.$(branch_number).98
+next
+edit 2
+set start-ip 10.4.$(branch_number).100
+set end-ip 10.4.$(branch_number).254
+next
+end
+next
+
+end

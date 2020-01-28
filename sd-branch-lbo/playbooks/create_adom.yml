@@ -1,0 +1,22 @@
+- name: CREATE ADOM "{{ adom_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: add
+    params: [
+      {
+        url: /dvmdb/adom,
+        data: {
+          desc: "ADOM created via Ansible",
+          flags: [
+            central_sdwan,
+            no_vpn_console,
+          ],
+          os_ver: 6,
+          mr: 2,
+          name: "{{ adom_name }}",
+          tab_status: "[ \"dashboard\", \"interface\", \"portpair\", \"cfgvdom\", \"glbresourcetbl\", \"dhcpsvr_all\", \"modem\", \"snifferpolicy\", \"ha\", \"snmp\", \"dns\", \"dnsdb\", \"dnsserver\", \"webproxyexpl\", \"mngintf\", \"adminsettings\", \"administrator\", \"adminprof\", \"localhostid\", \"vpncacert\", \"replacemsg\", \"replacemsggrp\", \"fortiguard\", \"csf\", \"automation_stitch\", \"logsettings\", \"alertemailsett\", \"threatweight\", \"nat64prefix\", \"fortisandbox\", \"staticroute_all\", \"policyroute\", \"gatewaydetection\", \"ospf\", \"rip\", \"bgp\", \"mcroute\", \"wanoptsetting\", \"wanopturlmatch\", \"forticlientprof\", \"webfltroverride\", \"phase1_all\", \"phase2_all\", \"manualkey_all\", \"concentrator\", \"wifiradio\", \"querydhcp\", \"queryvpn\", \"queryssvpn\", \"queryuser\", \"querytrafficshapper\", \"queryfortitoken\", \"querydlp\", \"querywificlient\", \"queryrogueap\", \"querylogging\", \"queryrouting\", \"detectdevid\", \"clionlyid\" ]",
+        },
+      },
+    ]

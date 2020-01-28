@@ -1,0 +1,11 @@
+config system interface
+edit ssid_marketing
+set ip 10.20.$(branch_number).99/24
+next
+edit ssid_support
+set ip 10.30.$(branch_number).99/24
+next
+edit ssid_finance
+set ip 10.40.$(branch_number).99/24
+next
+end

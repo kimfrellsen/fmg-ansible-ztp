@@ -1,0 +1,11 @@
+- name: CREATE ADOM "{{ adom_name }}"
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: delete
+    params: [
+      {
+        url: "/dvmdb/adom/{{ adom_name }}",
+      },
+      ]

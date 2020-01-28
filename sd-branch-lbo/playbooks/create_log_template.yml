@@ -1,0 +1,45 @@
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: set
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/devprof/{{ system_template_name }}/device/profile/fortianalyzer",
+        data: {
+          managed-sn: "",
+          target: others,
+          target-ip: "80.63.106.43",
+          target-sn: "FAZ-VMTM19001061",
+        },
+      },
+    ]
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER SETTINGS
+  fortimgr_jsonrpc_request:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_password }}"
+    method: set
+    params: [
+      {
+        url: "/pm/config/adom/{{ adom_name }}/devprof/{{ system_template_name }}/log/fortianalyzer/setting",
+        data: {
+          access-config: enable,
+          #certificate: [],
+          certificate-verification: disable,
+          #enc-algorithm: "0",
+          #hmac-algorithm: "0",
+          ips-archive: enable,
+          #max-log-rate: "0",
+          #monitor-failure-retry-period: "5",
+          #monitor-keepalive-period: "5",
+          #obj flags: "2",
+          #priority: "3",
+          reliable: disable,
+          #ssl-min-proto-version: "0",
+          upload-option: realtime,
+        },
+      },
+    ]
