@@ -1,0 +1,37 @@
+# global vars
+adom_name: "ADOMXXX"
+# branch vars
+branch_number: 1
+device_name: "fgt-{{ adom_name }}-branch{{ branch_number }}"
+device_sn: FGT60ETK19037XXX
+fsw_sn: FS108D3W17005XXX
+fap_sn: PS321C3U16001XXX
+device_latitude: "55.675905"
+device_longitude: "12.568864"
+device_vdom_name: root
+# general vars
+spoke_device_group_name: branches
+hub_device_group_name: hubs
+isp1_name: ISP1
+isp2_name: ISP2
+isp1_intf: wan1
+isp2_intf: wan2
+#FGT-60 series
+fortilink_intf: internal1
+local_switch: internal
+#FGT-80 series
+#fortilink_intf: port1
+#local_switch: lan
+ppkg_staging: pp_staging
+ppkg_production: pp_production
+sdwan_template_name: branches_sdwan_template
+sdwan_isp1: "T_{{ isp1_name }}"
+sdwan_isp2: "T_{{ isp2_name }}"
+sdwan_health_check_name: GooglePublicDNS
+sdwan_health_check_name_O365: Office365
+cli_template_group_name: branches_cli_template_group
+system_template_name: branches_system_template
+fsw_name: "FortiSwitch-108D-POE"
+fap_profile_name: branches_fap_profile
+fap_type: S321C
+fap_default_profile_name: "FAP{{ fap_type }}-default"
