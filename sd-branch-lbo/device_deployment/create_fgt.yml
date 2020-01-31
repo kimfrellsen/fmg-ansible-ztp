@@ -1,5 +1,5 @@
 ---
-- name: DEPLOY BRANCH1
+- name: DEPLOY BRANCH
   hosts: fmg_gcp
   connection: httpapi
   gather_facts: False

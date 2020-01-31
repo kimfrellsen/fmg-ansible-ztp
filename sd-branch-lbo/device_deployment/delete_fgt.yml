@@ -1,5 +1,5 @@
 ---
-- name: DELETE BRANCH1
+- name: DELETE BRANCH
   hosts: fmg_gcp
   connection: httpapi
   gather_facts: False
