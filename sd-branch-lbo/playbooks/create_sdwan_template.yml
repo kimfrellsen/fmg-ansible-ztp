@@ -41,7 +41,7 @@
       },
     ]
 
-- name: ADDING HEALTH CHECK "{{ sdwan_health_check_name }}" IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+- name: ADDING HEALTH CHECK "{{ sdwan_health_check_name_GDNS }}" IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
   fortimgr_jsonrpc_request:
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
@@ -49,11 +49,11 @@
     method: add
     params: [
       {
-        url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/virtual-wan-link/health-check",
+        url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name_GDNS }}/system/virtual-wan-link/health-check",
         data: {
-          name: "{{ sdwan_health_check_name }}",
+          name: "{{ sdwan_health_check_name_GDNS }}",
           _dynamic-server: [
-            "{{ sdwan_health_check_name }}",
+            "{{ sdwan_health_check_name_GDNS }}",
           ],
           members: [
             "1", "2",
@@ -72,7 +72,7 @@
       {
         url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/virtual-wan-link/health-check",
         data: {
-          name: "{{ sdwan_health_check_name_O365 }}",
+          name: "Default_Office_365",
           _dynamic-server: [
             "{{ sdwan_health_check_name_O365 }}",
           ],
@@ -102,7 +102,7 @@
           internet-service: 1,
           addr-mode: 7,
           health-check: [
-              "Office365",
+              "Default_Office_365",
           ],
           internet-service-id: [
               "327782",

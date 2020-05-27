@@ -64,9 +64,9 @@
         url: "/pm/config/adom/{{ adom_name }}/devprof/{{ system_template_name }}/device/profile/fortianalyzer",
         data: {
           managed-sn: "",
-          target: 4,
-          target-ip: "{{ ansible_host }}",
-          target-sn: "",
+          target: others,
+          target-ip: "{{ faz_ip }}",
+          target-sn: "{{ faz_sn }}",
         },
       },
     ]
@@ -89,4 +89,3 @@
         },
       },
     ]
-

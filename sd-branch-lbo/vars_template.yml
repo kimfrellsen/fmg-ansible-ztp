@@ -1,5 +1,7 @@
 # global vars
 adom_name: "ADOMXXX"
+faz_ip: "XXX"
+faz_sn: "XXX"
 # branch vars
 branch_number: 1
 device_name: "fgt-{{ adom_name }}-branch{{ branch_number }}"
@@ -27,7 +29,7 @@ ppkg_production: pp_production
 sdwan_template_name: branches_sdwan_template
 sdwan_isp1: "T_{{ isp1_name }}"
 sdwan_isp2: "T_{{ isp2_name }}"
-sdwan_health_check_name: GooglePublicDNS
+sdwan_health_check_name_GDNS: GooglePublicDNS
 sdwan_health_check_name_O365: Office365
 cli_template_group_name: branches_cli_template_group
 system_template_name: branches_system_template
