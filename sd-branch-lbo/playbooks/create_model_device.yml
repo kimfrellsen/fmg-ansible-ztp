@@ -20,12 +20,12 @@
             os_type: fos,
             os_ver: "6.0",
             mr: 2,
-            patch: 3,
+            patch: 7,
           },
           flags: [none],
         },
       },
-    ]
+      ]
 
 - name: ENABLE AUTO LINK AND SET COORDINATES FOR DEVICE "{{ device_name }}"
   fortimgr_jsonrpc_request:
