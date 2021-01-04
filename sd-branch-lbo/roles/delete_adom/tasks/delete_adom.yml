@@ -1,0 +1,5 @@
+- name: DELETE ADOM "{{ adom_name }}"
+  fmgr_dvmdb_adom:
+     state: absent
+     dvmdb_adom:
+        name: '{{ adom_name }}'

@@ -1,0 +1,15 @@
+---
+- name: DELETE BRANCH
+  hosts: fortimanagers
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  gather_facts: no
+
+  vars:
+
+  tasks:
+    - include_vars: "vars/enterprise1.yml"
+    - include_vars: "vars/enterprise1_branch1.yml"
+    - include_role:
+        name: delete_branch

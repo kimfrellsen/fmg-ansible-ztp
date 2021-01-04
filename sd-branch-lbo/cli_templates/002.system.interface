@@ -1,0 +1,8 @@
+config system interface
+edit $(isp1_intf)
+append allowaccess https http ssh ping fgfm
+next
+edit $(isp2_intf)
+append allowaccess https http ssh ping fgfm
+next
+end

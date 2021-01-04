@@ -1,0 +1,12 @@
+- name: INITIALIZE META FIELDS FOR MODEL DEVICE "{{ device_name }}"
+  fmgr_dvmdb_device:
+    adom: "{{ adom_name }}"
+    device: "{{ device_name }}"
+    dvmdb_device:
+        "meta fields": {
+          branch_number: "{{ branch_number | string}}",
+          isp1_intf: "{{ isp1_intf }}",
+          isp2_intf: "{{ isp2_intf }}",
+          fortilink_intf: "{{ fortilink_intf }}",
+          adom_name: "{{ adom_name }}",
+          }

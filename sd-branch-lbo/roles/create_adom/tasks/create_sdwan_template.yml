@@ -1,0 +1,90 @@
+- name: CREATE SD-WAN TEMPLATE "{{ sdwan_template_name }}"
+  fmgr_generic:
+     method: "set"
+     params:
+       - url: "/pm/wanprof/adom/{{ adom_name }}"
+         data:
+            -
+              name: "{{ sdwan_template_name }}"
+              description: "SD-WAN Template created via Ansible"
+              type: wanprof
+
+- name: ADD MEMBERS to SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fmgr_generic:
+     method: "set"
+     params:
+       - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/members"
+         data:
+            -
+              _dynamic-member: "{{ item.name }}"
+              seq-num: "{{ item.seqnum }}"
+  with_items:
+    - name: "{{ isp1_name }}"
+      seqnum: 1
+    - name: "{{ isp2_name }}"
+      seqnum: 2
+
+- name: ADDING HEALTH CHECK IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fmgr_generic:
+     method: "set"
+     params:
+       - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/health-check"
+         data:
+            -
+              name: "{{ item.name }}"
+              _dynamic-server: "{{ item.name }}"
+              members:
+                - "1"
+                - "2"
+  with_items:
+    - name: "{{ sdwan_health_check_GDNS_name }}"
+    #- name: "{{ sdwan_health_check_O365_name }}"
+
+
+- name: UPDATE Default_Office_365 HEALTH CHECK IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fmgr_generic:
+     method: "update"
+     params:
+       - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/health-check"
+         data:
+            -
+              name: "Default_Office_365"
+              _dynamic-server: "{{ sdwan_health_check_O365_name }}"
+              members:
+                - "1"
+                - "2"
+
+
+- name: ADDING SD-WAN RULE "{{ sdwan_health_check_O365_name }}" IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
+  fmgr_generic:
+     method: "set"
+     params:
+       - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/service"
+         data:
+            - id: 1
+              name: "Office365"
+              internet-service: enable
+              addr-mode: "ipv4"
+              health-check:
+                - "Default_Office_365"
+              internet-service-name:
+                - "Microsoft-Office365"
+                - "Microsoft-Office365.Published"
+              internet-service-app-ctrl:
+                - 33182
+                - 41468
+                - 41999
+                - 42000
+                - 42001
+                - 43277
+                - 43278
+                - 43279
+                - 43280
+                - 43281
+                - 43288
+                - 43289
+              mode: "priority"
+              priority-members:
+                - "1"
+                - "2"
+              role: "standalone"

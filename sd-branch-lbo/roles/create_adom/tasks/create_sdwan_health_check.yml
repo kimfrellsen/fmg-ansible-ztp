@@ -1,0 +1,13 @@
+- name: CREATE SD-WAN HEALTH-CHECK SERVER
+  fmgr_dynamic_virtualwanlink_server:
+      adom: "{{ adom_name }}"
+      state: present
+      dynamic_virtualwanlink_server:
+         name: "{{ item.name }}"
+         server: " {{ item.server }}"
+  with_items:
+    - name: "{{ sdwan_health_check_GDNS_name }}"
+      server: "{{ sdwan_health_check_GDNS_server }}"
+    - name: "{{ sdwan_health_check_O365_name }}"
+      server: "{{ sdwan_health_check_O365_server }}"
+       

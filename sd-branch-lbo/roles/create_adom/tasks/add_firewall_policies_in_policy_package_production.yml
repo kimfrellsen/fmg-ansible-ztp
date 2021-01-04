@@ -1,0 +1,87 @@
+- name: ADD FIREWALL POLICIES IN POLICY PACKAGE "{{ ppkg_spoke }}"
+  fmgr_generic:
+     method: set
+     params:
+       - url: "/pm/config/adom/{{ adom_name }}/pkg/{{ ppkg_spoke }}/firewall/policy"
+         data:
+          -
+            policyid: "{{ item.policyid }}"
+            global-label: "{{ item.global_label }}"
+            srcintf: "{{ item.srcintf }}"
+            dstintf: "{{ item.dstintf }}"
+            srcaddr: "{{ item.srcaddr }}"
+            dstaddr: "{{ item.dstaddr }}"
+            service: "{{ item.service }}"
+            schedule: "{{ item.schedule }}"
+            action: "{{ item.action }}"
+            application-list: "{{ item.application_list }}"
+            av-profile: "{{ item.av_profile }}"
+            profile-protocol-options: "{{ item.profile_protocol_options }}"
+            ssl-ssh-profile: "{{ item.ssl_ssh_profile }}"
+            webfilter-profile: "{{ item.webfilter_profile }}"
+            dnsfilter-profile: "{{ item.dnsfilter_profile }}"
+            ips-sensor: "{{ item.ips_sensor }}"
+            logtraffic: "{{ item.logtraffic }}"
+            utm-status: enable
+            nat: enable
+  with_items:
+    - policyid: 1
+      global_label: "Outgoing Traffic"
+      srcintf:
+        - "{{ vlan_finance_name }}"
+        - "{{ vlan_support_name }}"
+        - "{{ vlan_marketing_name }}"
+      dstintf:
+        - "virtual-wan-link"
+      srcaddr: "all"
+      dstaddr: "all"
+      service: "ALL"
+      schedule: "always"
+      action: accept
+      application_list: "default"
+      av_profile: "default"
+      profile_protocol_options: "default"
+      ssl_ssh_profile: "certificate-inspection"
+      webfilter_profile: "default"
+      dnsfilter_profile: "default"
+      ips_sensor: "default"
+      logtraffic: "all"
+    - policyid: 2
+      global_label: "Outgoing Wireless Traffic"
+      srcintf:
+        - "{{ wifi_finance_name }}"
+        - "{{ wifi_support_name }}"
+        - "{{ wifi_marketing_name }}"
+      dstintf: "virtual-wan-link"
+      srcaddr: "all"
+      dstaddr: "all"
+      service: "ALL"
+      schedule: "always"
+      action: accept
+      application_list: "default"
+      av_profile: "default"
+      profile_protocol_options: "default"
+      ssl_ssh_profile: "certificate-inspection"
+      webfilter_profile: "default"
+      dnsfilter_profile: "default"
+      ips_sensor: "default"
+      logtraffic: "all"
+    - policyid: 3
+      global_label: "Outgoing Traffic"
+      srcintf:
+        - "any"
+      dstintf:
+        - "virtual-wan-link"
+      srcaddr: "all"
+      dstaddr: "all"
+      service: "ALL"
+      schedule: "always"
+      action: accept
+      application_list: "default"
+      av_profile: "default"
+      profile_protocol_options: "default"
+      ssl_ssh_profile: "certificate-inspection"
+      webfilter_profile: "default"
+      dnsfilter_profile: "default"
+      ips_sensor: "default"
+      logtraffic: "all"

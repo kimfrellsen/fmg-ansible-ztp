@@ -1,0 +1,10 @@
+- name: ADD FORTIAP "{{ fap_sn }}" TO MODEL DEVICE "{{ device_name }}"
+  fmgr_generic:
+   method: add
+   params:
+     - url: "/pm/config/device/{{ device_name }}/vdom/{{ device_vdom_name }}/wireless-controller/wtp"
+       data:
+          -
+            name: "{{ fap_sn }}"
+            wtp-id: "{{ fap_sn }}"
+       push: 1

@@ -1,0 +1,37 @@
+- name: CREATE MODEL DEVICE "{{ device_name }}" with SN "{{ device_sn }}"
+  fmgr_generic:
+     method: "exec"
+     params:
+       - url: "/dvm/cmd/add/device"
+         data:
+           #-
+            adom: "{{ adom_name}}"
+            device:
+               adm_pass: [
+                "admin"
+                ]
+               adm_usr: "admin"
+               desc: "The device is added via Ansible"
+               mgmt_mode: "fmgfaz"
+               device action: "add_model"
+               name: "{{ device_name }}"
+               sn: "{{ device_sn }}"
+               os_type: "fos"
+               os_ver: "6.0"
+               mr: 4
+               patch: 4
+            flags:
+              - create_task
+
+
+- name: ENABLE AUTO LINK AND SET COORDINATES FOR DEVICE "{{ device_name }}"
+  fmgr_dvmdb_device:
+    adom: "{{ adom_name }}"
+    device: "{{ device_name }}"
+    dvmdb_device:
+      latitude: "{{ device_latitude }}"
+      longitude: "{{ device_longitude }}"
+      #faz.perm: 15
+      flags:
+        - is_model
+        - linked_to_model

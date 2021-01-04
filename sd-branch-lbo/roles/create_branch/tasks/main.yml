@@ -1,0 +1,61 @@
+---
+# tasks file for create_branch
+- name: create_model_device
+  collections:
+    - fortinet.fortimanager
+  import_tasks: create_model_device.yml
+
+- name: initialize_model_device_meta_fields
+  collections:
+    - fortinet.fortimanager
+  import_tasks: initialize_model_device_meta_fields.yml
+
+- name: move_spoke_model_device_in_device_group
+  collections:
+    - fortinet.fortimanager
+  import_tasks: move_spoke_model_device_in_device_group.yml
+
+- name: assign_model_device_to_system_template
+  collections:
+    - fortinet.fortimanager
+  import_tasks: assign_model_device_to_system_template.yml
+
+- name: assign_model_device_to_sdwan_template
+  collections:
+    - fortinet.fortimanager
+  import_tasks: assign_model_device_to_sdwan_template.yml
+
+- name: add_fsw_to_model_device
+  collections:
+    - fortinet.fortimanager
+  import_tasks: add_fsw_to_model_device.yml
+
+- name: assign_model_device_to_fsw_template
+  collections:
+    - fortinet.fortimanager
+  import_tasks: assign_model_device_to_fsw_template.yml
+
+- name: add_fap_to_model_device
+  collections:
+    - fortinet.fortimanager
+  import_tasks: add_fap_to_model_device.yml
+
+- name: assign_model_device_to_fap_profile
+  collections:
+    - fortinet.fortimanager
+  import_tasks: assign_model_device_to_fap_profile.yml
+
+- name: assign_model_device_to_cli_template_group
+  collections:
+    - fortinet.fortimanager
+  import_tasks: assign_model_device_to_cli_template_group.yml
+
+- name: assign_fortilink_intf
+  collections:
+    - fortinet.fortimanager
+  import_tasks: assign_fortilink_intf.yml
+
+- name: install_policy_package_production
+  collections:
+    - fortinet.fortimanager
+  import_tasks: install_policy_package_production.yml

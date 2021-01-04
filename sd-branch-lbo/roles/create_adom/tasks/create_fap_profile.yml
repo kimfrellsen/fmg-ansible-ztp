@@ -1,0 +1,41 @@
+- name: CREATE FAP PROFILE "{{ fap_profile_name }}"
+  fmgr_generic:
+     method: "set"
+     params:
+       - url: "/pm/config/adom/{{ adom_name }}/obj/wireless-controller/wtp-profile"
+         data:
+            -
+              name: "{{ fap_profile_name }}"
+              ap-country: "{{ fap_country }}"
+              platform:
+                type: "{{ fap_type }}"
+              frequency-handoff: enable
+              handoff-roaming: enable
+              ap-handoff: enable
+              allowaccess:
+                - https
+                - ssh
+              radio-1:
+                band: 802.11n
+                vap-all: manual
+                vaps:
+                  - "{{ wifi_marketing_name }}"
+                  - "{{ wifi_support_name }}"
+                  - "{{ wifi_finance_name }}"
+                channel:
+                  - 1
+                  - 6
+                  - 11
+              radio-2:
+                band: 802.11ac
+                short-guard-interval: enable
+                darrp: enable
+                vap-all: manual
+                vaps:
+                  - "{{ wifi_marketing_name }}"
+                  - "{{ wifi_support_name }}"
+                  - "{{ wifi_finance_name }}"
+                channel:
+                  - 48
+                  - 60
+                  - 64

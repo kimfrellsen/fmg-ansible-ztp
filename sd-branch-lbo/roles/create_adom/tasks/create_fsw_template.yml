@@ -1,0 +1,30 @@
+- name: CREATE FORTISWITCH TEMPLATE "{{ fsw_name }}"
+  fmgr_switchcontroller_managedswitch:
+     state: present
+     adom: "{{ adom_name }}"
+     switchcontroller_managedswitch:
+        name: "{{ fsw_profile_name }}"
+        _platform: "{{ fsw_platform }}"
+        description: "FortiSwitch Template created via Ansible"
+        ports:
+          - port-name: port1
+            vlan: [default]
+          - port-name: port2
+            vlan: [vlan_mgmt_fap]
+          - port-name: port3
+            vlan: [vlan_marketing]
+          - port-name: port4
+            vlan: [vlan_support]
+          - port-name: port5
+            vlan: [vlan_finance]
+          - port-name: port6
+            vlan: [default]
+          - port-name: port7
+            vlan: [default]
+          - port-name: port8
+            vlan: [default]
+          - port-name: port9
+            vlan: [default]
+          - port-name: port10
+            vlan: [default]
+        switch-id: "{{ fsw_profile_name }}"

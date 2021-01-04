@@ -1,0 +1,26 @@
+#Branch vars
+branch_number: 2
+device_latitude: "XX.XXXXXX"
+device_longitude: "XX.XXXXXXX"
+
+#FortiGate vars
+device_name: "fgt-{{ adom_name }}-branch{{ branch_number }}"
+device_sn: FGTXXXXXXXXXXXXX
+
+#FortiSwitch vars
+fsw_name: "fsw1-{{ adom_name }}-branch{{ branch_number }}"
+fsw_sn: FSXXXXXXXXXXXXXX
+
+#FortiAP vars
+fap_sn: FPXXXXXXXXXXXXXX
+fap_type: 221E
+fap_country: DK
+fap_default_profile_name: "FAP{{ fap_type }}-default"
+
+#General vars
+isp1_name: ISP1
+isp2_name: ISP2
+isp1_intf: wan1
+isp2_intf: wan2
+fortilink_intf: port1
+local_switch: lan

@@ -1,0 +1,14 @@
+---
+- name: PROVISION FORTIMANAGER WITH SHARED COMPONENTS
+  hosts: fortimanagers
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  gather_facts: no
+
+  vars:
+
+  tasks:
+    - include_vars: "vars/enterprise1.yml"
+    - include_role:
+        name: delete_adom

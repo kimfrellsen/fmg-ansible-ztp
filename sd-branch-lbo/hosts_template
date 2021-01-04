@@ -1,0 +1,8 @@
+[fortimanagers]
+fmg1 ansible_host=x.x.x.x ansible_user="USERNAME" ansible_password="PASSWORD"
+
+[fortimanagers:vars]
+ansible_network_os=fortinet.fortimanager.fortimanager
+ansible_httpapi_use_ssl=true
+ansible_httpapi_validate_certs=False
+ansible_httpapi_timeout=300

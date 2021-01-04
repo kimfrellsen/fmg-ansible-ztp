@@ -1,0 +1,6 @@
+config router static
+edit 1
+     set distance 1
+     set sdwan enable
+next
+end

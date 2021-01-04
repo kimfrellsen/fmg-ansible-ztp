@@ -1,0 +1,19 @@
+- name: ENABLE AUTO-AUTHORIZE ON MODEL DEVICE "{{ device_name }}", INTERFACE fortilink"
+  fmgr_generic:
+     method: set
+     params:
+       - url: "/pm/config/device/{{ device_name }}/global/system/interface"
+         data:
+            - name: "fortilink"
+              auto-auth-extension-device: "enable"
+
+- name: ADD FORTISWITCH "{{ fsw_sn }}" TO MODEL DEVICE "{{ device_name }}"
+  fmgr_generic:
+     method: add
+     params:
+       - url: "/pm/config/device/{{ device_name }}/vdom/{{ device_vdom_name }}/switch-controller/managed-switch"
+         data:
+            -
+              name: "{{ fsw_name }}"
+              switch-id: "{{ fsw_sn }}"
+         push: 1

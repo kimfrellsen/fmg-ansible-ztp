@@ -1,6 +1,0 @@
-config router static
-edit 1
-     set distance 1
-     set virtual-wan-link enable
-next
-end

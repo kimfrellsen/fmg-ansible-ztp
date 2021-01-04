@@ -1,0 +1,10 @@
+- name: ASSIGN MODEL DEVICE "{{ device_name }}" TO FAP PROFILE "{{ fap_profile_name }}"
+  fmgr_generic:
+    method: update
+    params:
+     - url: "/pm/config/adom/{{ adom_name }}/obj/wireless-controller/wtp/{{ fap_sn }}"
+       data:
+          wtp-profile: "{{ fap_profile_name }}"
+       scope member:
+        - name: "{{ device_name }}"
+          vdom: "{{ device_vdom_name }}"

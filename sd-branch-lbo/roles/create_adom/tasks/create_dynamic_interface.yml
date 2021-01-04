@@ -1,0 +1,47 @@
+- name: CREATE NORMALIZED INTERFACE MAPPED WITH DEFAULT MAPPING
+  fmgr_dynamic_interface:
+     adom: "{{ adom_name }}"
+     state: present
+     dynamic_interface:
+        name: "{{ item.name }}"
+        color: "{{ item.color }}"
+        default-mapping: enable
+        defmap-intf: "{{ item.defmap_intf }}"
+        description: "Dynamic Interface created via Ansibe"
+
+  with_items:
+    - name: ssid_finance
+      color: 20
+      defmap_intf: ssid_finance
+    - name: ssid_marketing
+      color: 3
+      defmap_intf: ssid_marketing
+    - name: ssid_support
+      color: 18
+      defmap_intf: ssid_support
+    - name: vlan_finance
+      color: 20
+      defmap_intf: vlan_finance
+    - name: vlan_marketing
+      color: 3
+      defmap_intf: vlan_marketing
+    - name: vlan_support
+      color: 18
+      defmap_intf: vlan_support
+    - name: vlan_mgmt_fap
+      color: 7
+      defmap_intf: vlan_mgmt_fap
+    - name: lan
+      color: 1
+      defmap_intf: lan
+    - name: internal
+      color: 1
+      defmap_intf: internal
+#    - name: "{{ isp1_name }}"
+#      color: 23
+#      defmap_intf: "{{ isp1_intf }}"
+#      local_intf: port10
+#    - name: "{{ isp2_name }}"
+#      color: 24
+#      defmap_intf: "{{ isp2_intf }}"
+#      local_intf: port20

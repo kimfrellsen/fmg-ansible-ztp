@@ -1,0 +1,15 @@
+- name: INSTALL POLICY PACKAGE "{{ ppkg_spoke }}" ON DEVICE "{{ device_name }}"
+  fmgr_generic:
+   method: "exec"
+   params:
+     - url: "/securityconsole/install/package"
+       data:
+          -
+            adom: "{{ adom_name }}"
+            flags:
+              - none
+            pkg: "{{ ppkg_spoke }}"
+            scope:
+              - name: "{{ device_name }}"
+                vdom: "{{ device_vdom_name }}"
+                

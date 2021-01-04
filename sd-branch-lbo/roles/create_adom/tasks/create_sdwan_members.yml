@@ -1,0 +1,12 @@
+- name: CREATE SD-WAN INTERFACE MEMBERS
+  fmgr_dynamic_virtualwanlink_members:
+      adom: "{{ adom_name }}"
+      state: present
+      dynamic_virtualwanlink_members:
+         name: "{{ item.name }}"
+         interface: "{{ item.interface }}"
+  with_items:
+    - name: "{{ isp1_name }}"
+      interface: "{{ isp1_intf }}"
+    - name: "{{ isp2_name }}"
+      interface: "{{ isp2_intf }}"

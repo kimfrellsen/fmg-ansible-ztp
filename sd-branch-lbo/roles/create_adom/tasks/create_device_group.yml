@@ -1,0 +1,13 @@
+- name: CREATE DEVICE GROUPS
+  fmgr_dvmdb_group:
+     state: present
+     adom: "{{ adom_name }}"
+     dvmdb_group:
+        desc: "Device Group created via Ansible"
+        name: "{{ item.name }}"
+        os_type: fos
+        type: normal
+
+  with_items:
+     - name: "{{ spoke_group_name }}"
+     - name: "{{ hub_group_name }}"

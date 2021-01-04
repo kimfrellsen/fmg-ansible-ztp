@@ -1,0 +1,76 @@
+- name: ADD FORTISWITCH VLANS
+  fmgr_fsp_vlan:
+    adom: "{{ adom_name }}"
+    state: present
+    fsp_vlan:
+       name: "{{ item.name }}"
+       vlanid: "{{ item.vlanid }}"
+       vdom: "{{ device_vdom_name }}"
+  with_items:
+    - name: "{{ vlan_marketing_name }}"
+      vlanid: "{{ vlan_marketing_vlanid }}"
+    - name: "{{ vlan_support_name }}"
+      vlanid: "{{ vlan_support_vlanid }}"
+    - name: "{{ vlan_finance_name }}"
+      vlanid: "{{ vlan_finance_vlanid }}"
+    - name: "{{ vlan_mgmt_fap_name }}"
+      vlanid: "{{ vlan_mgmt_fap_vlanid }}"
+
+- name: SET DHCP FOR FORTISWITCH VLAN FOR {{ vlan_mgmt_fap_name }}
+  fmgr_fsp_vlan:
+    adom: "{{ adom_name }}"
+    state: present
+    fsp_vlan:
+       name: "{{ vlan_mgmt_fap_name }}"
+       _dhcp-status: enable
+       vlanid: "{{ vlan_mgmt_fap_vlanid }}"
+       vdom: "{{ device_vdom_name }}"
+
+- name: EDIT FORTISWITCH VLAN INTERFACE FOR {{ vlan_mgmt_fap_name }}
+  fmgr_fsp_vlan_interface:
+    adom: "{{ adom_name }}"
+    vlan: "{{ vlan_mgmt_fap_name }}"
+    fsp_vlan_interface:
+       allowaccess:
+          - ping
+          - capwap
+       role: lan
+       ip: "10.1.0.99/24"
+       auto-auth-extension-device: enable
+       ap-discover: enable
+
+- name: ADD DHCP SERVER FORTISWITCH VLAN FOR {{ vlan_mgmt_fap_name }}
+  fmgr_fsp_vlan_dhcpserver:
+    adom: "{{ adom_name }}"
+    vlan: "{{ vlan_mgmt_fap_name }}"
+    fsp_vlan_dhcpserver:
+       default-gateway: "10.1.0.99"
+       netmask: "255.255.255.0"
+       dns-service: default
+       ntp-service: default
+       timezone-option: default
+       ip-range:
+          - id: 1
+            start-ip: 10.1.0.1
+            end-ip: 10.1.0.98
+          - id: 2
+            start-ip: 10.1.0.100
+            end-ip: 10.1.0.254
+
+- name: ALLOWACCESS FORTISWITCH VLANS FOR PRODUCTION TRAFFIC
+  fmgr_fsp_vlan_interface:
+    adom: "{{ adom_name }}"
+    vlan: "{{ item.name }}"
+    fsp_vlan_interface:
+       allowaccess:
+          - https
+          - ping
+          - ssh
+       role: lan
+  with_items:
+    - name: "{{ vlan_marketing_name }}"
+      vlanid: "{{ vlan_marketing_vlanid }}"
+    - name: "{{ vlan_support_name }}"
+      vlanid: "{{ vlan_support_vlanid }}"
+    - name: "{{ vlan_finance_name }}"
+      vlanid: "{{ vlan_finance_vlanid }}"

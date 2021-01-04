@@ -1,0 +1,15 @@
+- name: CREATE POLICY PACKAGE
+  fmgr_pm_pkg_adom:
+     adom: "{{ adom_name }}"
+     pm_pkg_adom:
+        name: "{{ item.name }}"
+        package setting:
+           ngfw-mode: "profile-based"
+        scope member:
+           - name: "{{ item.scope_name }}"
+        type: pkg
+  with_items:
+    - name: "{{ ppkg_spoke }}"
+      scope_name: "{{ spoke_group_name }}"
+    - name: "{{ ppkg_hub }}"
+      scope_name: "{{ hub_group_name }}"

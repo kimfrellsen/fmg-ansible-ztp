@@ -1,0 +1,13 @@
+- name: CREATE DEVICE META FIELDS
+  fmgr_dvmdb_metafields_device:
+     dvmdb_metafields_device:
+        importance: optional
+        name: "{{ item.name }}"
+        length: 50
+        status: enable
+  with_items:
+    - name: branch_number
+    - name: isp1_intf
+    - name: isp2_intf
+    - name: fortilink_intf
+    - name: adom_name

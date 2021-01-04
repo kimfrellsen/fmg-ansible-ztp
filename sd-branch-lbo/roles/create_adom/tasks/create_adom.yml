@@ -1,0 +1,9 @@
+- name: CREATE ADOM "{{ adom_name }}"
+  fmgr_dvmdb_adom:
+     state: present
+     dvmdb_adom:
+        name: '{{ adom_name }}'
+        os_ver: "6.0"
+        mr: 4
+        flags:
+          - central_sdwan

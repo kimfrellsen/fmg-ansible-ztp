@@ -1,0 +1,28 @@
+- name: CREATE CLI TEMPLATES
+  fmgr_generic:
+     method: "set"
+     params:
+       - url: "/pm/config/adom/{{ adom_name }}/obj/cli/template"
+         data:
+            -
+              name: "{{ item.name }}"
+              description: "CLI Template created via Ansible"
+              script: "{% include item.script %}"
+
+  with_items:
+    - name: 001.system.global
+      script: "cli_templates/001.system.global"
+    - name: 002.system.interface
+      script: "cli_templates/002.system.interface"
+    - name: 003.system.dhcp.server
+      script: "cli_templates/003.system.dhcp.server"
+    - name: 004.system.interface.fsw
+      script: "cli_templates/004.system.interface.fsw"
+    - name: 005.system.dhcp.server.fsw
+      script: "cli_templates/005.system.dhcp.server.fsw"
+    - name: 006.system.interface.fap
+      script: "cli_templates/006.system.interface.fap"
+    - name: 007.system.dhcp.server.fap
+      script: "cli_templates/007.system.dhcp.server.fap"
+    - name: 008.router.static
+      script: "cli_templates/008.router.static"

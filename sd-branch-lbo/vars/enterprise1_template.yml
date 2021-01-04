@@ -1,0 +1,59 @@
+#Global vars
+adom_name: "Enterprise1"
+
+#FortiGate vars
+device_vdom_name: root
+
+#FortiSwitch vars
+fsw_platform: "FortiSwitch-424E"
+fsw_profile_name: "Profile-Main"
+vlan_marketing_name: vlan_marketing
+vlan_marketing_vlanid: 1002
+vlan_support_name: vlan_support
+vlan_support_vlanid: 1003
+vlan_finance_name: vlan_finance
+vlan_finance_vlanid: 1004
+vlan_mgmt_fap_name: vlan_mgmt_fap
+vlan_mgmt_fap_vlanid: 1001
+
+#FortiAP vars
+wifi_marketing_name: ssid_marketing
+wifi_marketing_ssid: "{{ adom_name }}_marketing"
+wifi_marketing_pass: "SSIDPASSWORD"
+wifi_support_name: ssid_support
+wifi_support_ssid: "{{ adom_name }}_support"
+wifi_support_pass: "SSIDPASSWORD"
+wifi_finance_name: ssid_finance
+wifi_finance_ssid: "{{ adom_name }}_finance"
+wifi_finance_pass: "SSIDPASSWORD"
+fap_profile_name: branches_fap_profile
+fap_type: 221E
+fap_country: DK
+fap_default_profile_name: "FAP{{ fap_type }}-default"
+
+#General vars
+spoke_group_name: spokes
+hub_group_name: hubs
+isp1_name: ISP1
+isp2_name: ISP2
+isp1_intf: wan1
+isp2_intf: wan2
+ppkg_spoke: pp_spokes
+ppkg_hub: pp_hubs
+
+#SD-WAN template vars
+sdwan_template_name: branches_sdwan_template
+sdwan_isp1: "T_{{ isp1_name }}"
+sdwan_isp2: "T_{{ isp2_name }}"
+sdwan_health_check_GDNS_name: GooglePublicDNS
+sdwan_health_check_GDNS_server: "8.8.8.8"
+sdwan_health_check_O365_name: Office365
+sdwan_health_check_O365_server: "www.office.com"
+
+#System Template vars
+ansible_faz_ip: "x.x.x.x"
+ansible_faz_sn: "FAZVMSXXXXXXXXXX"
+system_template_name: branches_system_template
+
+#CLI template vars
+cli_template_group_name: branches_cli_template_group

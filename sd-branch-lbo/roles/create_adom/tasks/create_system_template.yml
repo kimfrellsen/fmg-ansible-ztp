@@ -1,0 +1,50 @@
+- name: CREATE SYSTEM TEMPLATE {{ system_template_name }}
+  fmgr_pm_devprof_adom:
+    adom: "{{ adom_name }}"
+    pm_devprof_adom:
+      description: "System Template created via Ansible"
+      name: "{{ system_template_name }}"
+      type: "devprof"
+      enabled options:
+        - dns
+        - admin
+        - log
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - SYSTEM.GLOBAL
+  fmgr_devprof_system_global:
+    adom: "{{ adom_name }}"
+    devprof: "{{ system_template_name }}"
+    devprof_system_global:
+       admintimeout: 480
+       gui-ipv6: enable
+       gui-theme: mariner
+       switch-controller: enable
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - SYSTEM.DNS
+  fmgr_devprof_system_dns:
+    bypass_validation: True
+    adom: "{{ adom_name }}"
+    devprof: "{{ system_template_name }}"
+    devprof_system_dns:
+       primary: "8.8.8.8"
+       secondary: "8.8.4.4"
+
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER
+  fmgr_devprof_device_profile_fortianalyzer:
+    adom: "{{ adom_name }}"
+    devprof: "{{ system_template_name }}"
+    devprof_device_profile_fortianalyzer:
+       managed-sn: ""
+       target: others
+       target-ip: "{{ ansible_faz_ip }}"
+       target-sn: "{{ ansible_faz_sn }}"
+
+- name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER SETTINGS
+  fmgr_devprof_log_fortianalyzer_setting:
+    adom: "{{ adom_name }}"
+    devprof: "{{ system_template_name }}"
+    devprof_log_fortianalyzer_setting:
+       ips-archive: enable
+       reliable: enable
+       upload-option: realtime

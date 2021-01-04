@@ -1,0 +1,23 @@
+- name: ADD FORTIAP SSID FOR PRODUCTION TRAFFIC
+  fmgr_vap:
+     adom: "{{ adom_name }}"
+     state: present
+     vap:
+        name: "{{ item.name }}"
+        ssid: "{{ item.ssid }}"
+        passphrase: "{{ item.pass }}"
+        schedule: always
+        quarantine: disable
+        _centmgmt: enable
+        _intf_ip: "0.0.0.0/0"
+        _intf_allowaccess: [ping, ssh, https, http]
+  with_items:
+    - name: "{{ wifi_marketing_name }}"
+      ssid: "{{ wifi_marketing_ssid }}"
+      pass: "{{ wifi_marketing_pass }}"
+    - name: "{{ wifi_support_name }}"
+      ssid: "{{ wifi_support_ssid }}"
+      pass: "{{ wifi_support_pass }}"
+    - name: "{{ wifi_finance_name }}"
+      ssid: "{{ wifi_finance_ssid }}"
+      pass: "{{ wifi_finance_pass }}"

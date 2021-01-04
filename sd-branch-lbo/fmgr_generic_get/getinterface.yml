@@ -1,0 +1,20 @@
+---
+- name: DEPLOY BRANCH
+  hosts: fortimanagers
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  gather_facts: no
+
+  vars:
+
+  tasks:
+    - include_vars: "../vars/enterprise1.yml"
+    - include_vars: "../vars/enterprise1_branch1.yml"
+
+    - name: GET {{ fortilink_intf }} FROM INTERNAL TO FORTILINK
+      fmgr_generic:
+        method: get
+        params:
+          - url: "/pm/config/device/{{ device_name }}/global/system/interface/fortilink" #virtual-switch" #/fortilink"
+            data:

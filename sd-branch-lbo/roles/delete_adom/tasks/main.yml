@@ -1,0 +1,6 @@
+---
+# tasks file for sdwan_config
+- name: delete ADOM
+  collections:
+    - fortinet.fortimanager
+  import_tasks: delete_adom.yml

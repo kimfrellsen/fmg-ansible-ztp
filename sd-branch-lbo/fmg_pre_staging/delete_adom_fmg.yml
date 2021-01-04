@@ -1,9 +1,0 @@
----
-- name: PROVISION FORTIMANAGER WITH SHARED COMPONENTS
-  hosts: fmg_gcp
-  connection: httpapi
-  gather_facts: false
-  vars:
-    install_sleep_time: 10
-  tasks:
-    - import_tasks: ../playbooks/delete_adom.yml
