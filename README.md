@@ -10,6 +10,8 @@ How to use:
 3. Modify the hosts_template and rename to hosts
 4. Modify vars/enterprise1_template.yml and rename to vars/enterprise1.yml
 5. Modify vars/enterprise1_branch1_template.yml and rename to vars/enterprise1_branch1.yml
-6. run ansible-playbook -i hosts create_adom.yml create_branch1.yml
+6. run "ansible-playbook -i hosts create_adom.yml create_branch1.yml"
+
+Deleting branched or adoms with these commands: "ansible-playbook -i hosts delete_branch1.yml delete_adom.yml"
 
 enjoy :)
