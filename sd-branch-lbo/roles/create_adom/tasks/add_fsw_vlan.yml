@@ -26,18 +26,33 @@
        vlanid: "{{ vlan_mgmt_fap_vlanid }}"
        vdom: "{{ device_vdom_name }}"
 
-- name: EDIT FORTISWITCH VLAN INTERFACE FOR {{ vlan_mgmt_fap_name }}
-  fmgr_fsp_vlan_interface:
-    adom: "{{ adom_name }}"
-    vlan: "{{ vlan_mgmt_fap_name }}"
-    fsp_vlan_interface:
-       allowaccess:
-          - ping
-          - capwap
-       role: lan
-       ip: "10.1.0.99/24"
-       auto-auth-extension-device: enable
-       ap-discover: enable
+#- name: EDIT FORTISWITCH VLAN INTERFACE FOR {{ vlan_mgmt_fap_name }}
+#  fmgr_fsp_vlan_interface:
+#    adom: "{{ adom_name }}"
+#    vlan: "{{ vlan_mgmt_fap_name }}"
+#    fsp_vlan_interface:
+##       allowaccess:
+##          - ping
+##          - capwap
+#       role: lan
+#       ip: "10.1.0.99/24"
+#       auto-auth-extension-device: enable
+#       ap-discover: enable
+
+- name: UPDATE FORTISWITCH VLAN FOR FAP MANAGEMENT
+  fmgr_generic:
+   method: update
+   params:
+     - url: "/pm/config/adom/{{ adom_name }}/obj/fsp/vlan/{{ vlan_mgmt_fap_name }}/interface"
+       data:
+         allowaccess:
+           - "ping"
+           - "fabric"
+         role: lan
+         ip: "10.1.0.99/24"
+         auto-auth-extension-device: enable
+         ap-discover: enable
+
 
 - name: ADD DHCP SERVER FORTISWITCH VLAN FOR {{ vlan_mgmt_fap_name }}
   fmgr_fsp_vlan_dhcpserver:
