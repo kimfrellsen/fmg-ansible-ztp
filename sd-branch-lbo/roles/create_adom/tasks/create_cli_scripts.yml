@@ -1,0 +1,15 @@
+- name: CREATE CLI SCRIPTS
+  fmgr_dvmdb_script:
+        adom: "{{ adom_name }}"
+        state: present
+        dvmdb_script:
+           content: "{% include item.content %}"
+           name: "{{ item.name }}"
+           type: "{{ item.type }}"
+           target: "{{ item.target }}"
+
+  with_items:
+    - name: "001.purge.firewall.policies"
+      content: "cli_scripts/001.purge.firewall.policies"
+      type: "cli"
+      target: "device_database"

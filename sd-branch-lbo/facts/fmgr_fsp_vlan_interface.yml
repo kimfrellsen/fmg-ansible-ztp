@@ -1,0 +1,21 @@
+---
+- name: FACTS
+  hosts: fortimanagers
+  gather_facts: yes
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+
+  tasks:
+    - include_vars: "../vars/enterprise1.yml"
+    - include_vars: "../vars/enterprise1_branch2.yml"
+    - name: Retrieve device
+      fmgr_fact:
+       facts:
+         selector: 'fsp_vlan'
+         params:
+           adom: "{{ adom_name }}"
+           vlan: "vlan_mgmt_fap"
+           #device: "fgt-Enterprise1-branch2"
+         option:
+           - 'get meta'

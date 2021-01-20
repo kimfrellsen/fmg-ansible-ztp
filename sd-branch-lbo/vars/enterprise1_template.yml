@@ -55,5 +55,8 @@ ansible_faz_ip: "x.x.x.x"
 ansible_faz_sn: "FAZVMSXXXXXXXXXX"
 system_template_name: branches_system_template
 
+#CLI script vars
+cli_script_group_name: branches_cli_script_group
+
 #CLI template vars
 cli_template_group_name: branches_cli_template_group

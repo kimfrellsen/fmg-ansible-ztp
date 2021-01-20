@@ -4,63 +4,88 @@
   collections:
     - fortinet.fortimanager
   import_tasks: create_adom.yml
+  
 - name: create_device_meta_fields
   collections:
     - fortinet.fortimanager
   import_tasks: create_device_meta_fields.yml
+
 - name: create_device_group
   collections:
     - fortinet.fortimanager
   import_tasks: create_device_group.yml
+
 - name: create_system_template
   collections:
     - fortinet.fortimanager
   import_tasks: create_system_template.yml
+
 - name: create_dynamic_interface
   collections:
     - fortinet.fortimanager
   import_tasks: create_dynamic_interface.yml
+
 - name: create_policy_package
   collections:
     - fortinet.fortimanager
   import_tasks: create_policy_package.yml
+
 - name: add_fap_ssid
   collections:
     - fortinet.fortimanager
   import_tasks: add_fap_ssid.yml
+
 - name: add_firewall_policies_in_policy_package_production
   collections:
     - fortinet.fortimanager
   import_tasks: add_firewall_policies_in_policy_package_production.yml
+
 - name: add_fsw_vlan
   collections:
     - fortinet.fortimanager
   import_tasks: add_fsw_vlan.yml
+
 - name: create_fsw_template
   collections:
     - fortinet.fortimanager
   import_tasks: create_fsw_template.yml
+
 - name: create_fap_profile
   collections:
     - fortinet.fortimanager
   import_tasks: create_fap_profile.yml
+
 - name: create_sdwan_members
   collections:
     - fortinet.fortimanager
   import_tasks: create_sdwan_members.yml
+
 - name: create_sdwan_health_check
   collections:
     - fortinet.fortimanager
   import_tasks: create_sdwan_health_check.yml
+
 - name: create_sdwan_template
   collections:
     - fortinet.fortimanager
   import_tasks: create_sdwan_template.yml
+
 - name: create_cli_template
   collections:
     - fortinet.fortimanager
   import_tasks: create_cli_template.yml
+
 - name: create_cli_template_group
   collections:
     - fortinet.fortimanager
   import_tasks: create_cli_template_group.yml
+
+- name: create_cli_scripts
+  collections:
+    - fortinet.fortimanager
+  import_tasks: create_cli_scripts.yml
+
+- name: create_cli_scripts_group
+  collections:
+    - fortinet.fortimanager
+  import_tasks: create_cli_scripts_group.yml
