@@ -9,22 +9,17 @@
         ports:
           - port-name: port1
             vlan: [default]
+            lldp-profile: [default]
           - port-name: port2
             vlan: [vlan_mgmt_fap]
+            lldp-profile: [default]
           - port-name: port3
             vlan: [vlan_marketing]
+            lldp-profile: [default]
           - port-name: port4
             vlan: [vlan_support]
+            lldp-profile: [default]
           - port-name: port5
             vlan: [vlan_finance]
-          - port-name: port6
-            vlan: [default]
-          - port-name: port7
-            vlan: [default]
-          - port-name: port8
-            vlan: [default]
-          - port-name: port9
-            vlan: [default]
-          - port-name: port10
-            vlan: [default]
+            lldp-profile: [default]
         switch-id: "{{ fsw_profile_name }}"
