@@ -5,6 +5,16 @@
     - fortinet.fortimanager
   import_tasks: create_model_device.yml
 
+- name: link_to_model
+  collections:
+    - fortinet.fortimanager
+  import_tasks: link_to_model.yml
+
+- name: purge_default_firewall_policy.yml
+  collections:
+    - fortinet.fortimanager
+  import_tasks: purge_default_firewall_policy.yml
+
 - name: initialize_model_device_meta_fields
   collections:
     - fortinet.fortimanager
@@ -19,6 +29,11 @@
   collections:
     - fortinet.fortimanager
   import_tasks: assign_model_device_to_system_template.yml
+
+- name: assign_model_device_to_cli_template_group
+  collections:
+    - fortinet.fortimanager
+  import_tasks: assign_model_device_to_cli_template_group.yml
 
 - name: assign_model_device_to_sdwan_template
   collections:
@@ -44,11 +59,6 @@
   collections:
     - fortinet.fortimanager
   import_tasks: assign_model_device_to_fap_profile.yml
-
-- name: assign_model_device_to_cli_template_group
-  collections:
-    - fortinet.fortimanager
-  import_tasks: assign_model_device_to_cli_template_group.yml
 
 - name: assign_fortilink_intf
   collections:

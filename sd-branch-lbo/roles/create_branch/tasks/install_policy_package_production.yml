@@ -1,15 +1,35 @@
+- name: INSTALL DEVICE ON "{{ device_name }}"
+  fmgr_securityconsole_install_device:
+      securityconsole_install_device:
+         adom: "{{ adom_name }}"
+         flags:
+           - none
+#           - preview
+#           - auto_lock_ws
+         scope:
+           -
+               name: "{{ device_name }}"
+               vdom: "{{ device_vdom_name }}"
+
 - name: INSTALL POLICY PACKAGE "{{ ppkg_spoke }}" ON DEVICE "{{ device_name }}"
-  fmgr_generic:
-   method: "exec"
-   params:
-     - url: "/securityconsole/install/package"
-       data:
-          -
-            adom: "{{ adom_name }}"
-            flags:
-              - none
-            pkg: "{{ ppkg_spoke }}"
-            scope:
-              - name: "{{ device_name }}"
-                vdom: "{{ device_vdom_name }}"
-                
+  fmgr_securityconsole_install_package:
+      securityconsole_install_package:
+         adom: "{{ adom_name }}"
+         flags:
+           - none
+#           - cp_all_objs
+#           - preview
+#           - generate_rev
+#           - copy_assigned_pkg
+#           - unassign
+#           - ifpolicy_only
+#           - no_ifpolicy
+#           - objs_only
+#           - auto_lock_ws
+#           - check_pkg_st
+#           - copy_only
+         pkg: "{{ ppkg_spoke }}"
+         scope:
+           -
+               name: "{{ device_name }}"
+               vdom: "{{ device_vdom_name }}"

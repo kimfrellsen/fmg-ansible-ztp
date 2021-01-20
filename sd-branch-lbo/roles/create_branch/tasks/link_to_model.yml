@@ -1,0 +1,11 @@
+- name: ENABLE AUTO LINK AND SET COORDINATES FOR DEVICE "{{ device_name }}"
+  fmgr_dvmdb_device:
+    adom: "{{ adom_name }}"
+    device: "{{ device_name }}"
+    dvmdb_device:
+      latitude: "{{ device_latitude }}"
+      longitude: "{{ device_longitude }}"
+      #faz.perm: 15
+      flags:
+        - is_model
+        - linked_to_model

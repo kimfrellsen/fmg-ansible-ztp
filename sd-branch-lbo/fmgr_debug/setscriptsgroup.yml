@@ -1,0 +1,15 @@
+---
+- name: DEPLOY BRANCH
+  hosts: fortimanagers
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  gather_facts: no
+
+  vars:
+
+  tasks:
+    - include_vars: "../vars/enterprise1.yml"
+    - include_vars: "../vars/enterprise1_branch2.yml"
+    - include_tasks: "../roles/create_adom/tasks/create_cli_scripts_group.yml"
+

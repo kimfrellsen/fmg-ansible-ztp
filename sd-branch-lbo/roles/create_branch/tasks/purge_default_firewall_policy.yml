@@ -1,0 +1,18 @@
+- name: PURGE FIREWALL POLICIES
+#  fmgr_pkg_firewall_policy:
+#    bypass_validation: False
+#    adom: "{{ adom_name }}"
+#    pkg: "default"
+#    state: absent
+#    pkg_firewall_policy:
+#       policyid: 1
+
+  fmgr_dvmdb_script_execute:
+     adom: "{{ adom_name }}"
+     dvmdb_script_execute:
+       adom: "{{ adom_name }}"
+       scope:
+         -
+            name: "{{ device_name }}"
+            vdom: "{{ device_vdom_name }}"
+       script: "{{ cli_script_group_name }}"

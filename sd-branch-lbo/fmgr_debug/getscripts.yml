@@ -1,0 +1,20 @@
+---
+- name: DEPLOY BRANCH
+  hosts: fortimanagers
+  connection: httpapi
+  collections:
+    - fortinet.fortimanager
+  gather_facts: no
+
+  vars:
+
+  tasks:
+    - include_vars: "../vars/enterprise1.yml"
+    #- include_vars: "../vars/enterprise1_branch1.yml"
+
+    - name: GET CLI SCRIPTS
+      fmgr_generic:
+        method: get
+        params:
+          - url: "/dvmdb/adom/{{ adom_name }}/script"
+            data:
