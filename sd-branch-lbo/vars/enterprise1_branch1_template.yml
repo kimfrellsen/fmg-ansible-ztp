@@ -13,14 +13,7 @@ fsw_sn: FSXXXXXXXXXXXXXX
 
 #FortiAP vars
 fap_sn: FPXXXXXXXXXXXXXX
-fap_type: 221E
-fap_country: DK
-fap_default_profile_name: "FAP{{ fap_type }}-default"
 
 #General vars
-isp1_name: ISP1
-isp2_name: ISP2
-isp1_intf: wan1
-isp2_intf: wan2
 fortilink_intf: internal1
 local_switch: internal
