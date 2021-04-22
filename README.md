@@ -1,7 +1,7 @@
 # fmg-ansible-ztp
-fortimanager ansible playbooks to be used for zero touch provisioning
+Fortimanager ansible playbooks to be used for zero touch provisioning
 
-The playbooks and roles are being upgraded to support FortiManager 6.4.4 and FortiGate 6.4.4. using Ansible Galaxy Collections.
+The playbooks and roles now support FortiManager 6.4.4 and FortiGate 6.4.4 using Ansible Galaxy Collections.
 
 
 How to use:
