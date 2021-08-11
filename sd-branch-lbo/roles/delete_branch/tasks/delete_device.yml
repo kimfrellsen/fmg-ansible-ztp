@@ -1,5 +1,6 @@
 - name: REMOVE MODEL DEVICE "{{ device_name }}" with SN "{{ device_sn }}"
   fmgr_dvm_cmd_del_device:
+    workspace_locking_adom: "{{ adom_name }}"
     dvm_cmd_del_device:
       adom: "{{ adom_name }}"
       device: "{{ device_name }}"

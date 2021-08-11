@@ -1,5 +1,6 @@
 - name: CREATE CLI TEMPLATES
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: "set"
      params:
        - url: "/pm/config/adom/{{ adom_name }}/obj/cli/template"

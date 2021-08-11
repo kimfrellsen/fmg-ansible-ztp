@@ -1,5 +1,6 @@
 - name: CREATE DEVICE GROUPS
   fmgr_dvmdb_group:
+     workspace_locking_adom: "{{ adom_name }}"
      state: present
      adom: "{{ adom_name }}"
      dvmdb_group:

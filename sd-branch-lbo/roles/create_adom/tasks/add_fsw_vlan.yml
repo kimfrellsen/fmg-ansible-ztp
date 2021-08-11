@@ -1,6 +1,7 @@
 - name: ADD FORTISWITCH VLANS
   fmgr_fsp_vlan:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     state: present
     fsp_vlan:
        name: "{{ item.name }}"
@@ -19,6 +20,7 @@
 - name: SET DHCP FOR FORTISWITCH VLAN FOR {{ vlan_mgmt_fap_name }}
   fmgr_fsp_vlan:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     state: present
     fsp_vlan:
        name: "{{ vlan_mgmt_fap_name }}"
@@ -29,6 +31,7 @@
 - name: UPDATE FORTISWITCH VLAN FOR FAP MANAGEMENT
   fmgr_generic:
    method: update
+   workspace_locking_adom: "{{ adom_name }}"
    params:
      - url: "/pm/config/adom/{{ adom_name }}/obj/fsp/vlan/{{ vlan_mgmt_fap_name }}/interface"
        data:
@@ -44,6 +47,7 @@
 - name: ADD DHCP SERVER FORTISWITCH VLAN FOR {{ vlan_mgmt_fap_name }}
   fmgr_fsp_vlan_dhcpserver:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     vlan: "{{ vlan_mgmt_fap_name }}"
     fsp_vlan_dhcpserver:
        default-gateway: "10.1.0.99"
@@ -62,6 +66,7 @@
 - name: ALLOWACCESS FORTISWITCH VLANS FOR PRODUCTION TRAFFIC
   fmgr_fsp_vlan_interface:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     vlan: "{{ item.name }}"
     fsp_vlan_interface:
        allowaccess:

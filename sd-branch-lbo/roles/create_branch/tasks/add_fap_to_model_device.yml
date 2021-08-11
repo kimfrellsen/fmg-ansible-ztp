@@ -1,5 +1,6 @@
 - name: ADD FORTIAP "{{ fap_sn }}" TO MODEL DEVICE "{{ device_name }}"
   fmgr_generic:
+   workspace_locking_adom: "{{ adom_name }}"
    method: add
    params:
      - url: "/pm/config/device/{{ device_name }}/vdom/{{ device_vdom_name }}/wireless-controller/wtp"

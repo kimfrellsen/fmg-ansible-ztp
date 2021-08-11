@@ -1,6 +1,7 @@
 - name: CREATE POLICY PACKAGE
   fmgr_pm_pkg_adom:
      adom: "{{ adom_name }}"
+     workspace_locking_adom: "{{ adom_name }}"
      pm_pkg_adom:
         name: "{{ item.name }}"
         package setting:

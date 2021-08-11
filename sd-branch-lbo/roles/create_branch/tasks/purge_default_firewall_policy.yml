@@ -9,6 +9,7 @@
 
   fmgr_dvmdb_script_execute:
      adom: "{{ adom_name }}"
+     workspace_locking_adom: "{{ adom_name }}"
      dvmdb_script_execute:
        adom: "{{ adom_name }}"
        scope:

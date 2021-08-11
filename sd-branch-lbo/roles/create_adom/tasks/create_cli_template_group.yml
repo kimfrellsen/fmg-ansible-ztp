@@ -18,6 +18,7 @@
 
 - name: CREATE CLI TEMPLATE GROUP "{{ cli_template_group_name }}"
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: "set"
      params:
        - url: "/pm/config/adom/{{ adom_name }}/obj/cli/template-group"

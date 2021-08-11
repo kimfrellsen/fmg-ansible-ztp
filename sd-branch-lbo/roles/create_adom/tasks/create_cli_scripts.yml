@@ -1,6 +1,7 @@
 - name: CREATE CLI SCRIPTS
   fmgr_dvmdb_script:
         adom: "{{ adom_name }}"
+        workspace_locking_adom: "{{ adom_name }}"
         state: present
         dvmdb_script:
            content: "{% include item.content %}"

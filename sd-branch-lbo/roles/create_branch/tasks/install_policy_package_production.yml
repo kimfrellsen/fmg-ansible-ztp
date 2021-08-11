@@ -1,5 +1,6 @@
 - name: INSTALL DEVICE ON "{{ device_name }}"
   fmgr_securityconsole_install_device:
+      workspace_locking_adom: "{{ adom_name }}"
       securityconsole_install_device:
          adom: "{{ adom_name }}"
          flags:
@@ -13,6 +14,7 @@
 
 - name: INSTALL POLICY PACKAGE "{{ ppkg_spoke }}" ON DEVICE "{{ device_name }}"
   fmgr_securityconsole_install_package:
+      workspace_locking_adom: "{{ adom_name }}"
       securityconsole_install_package:
          adom: "{{ adom_name }}"
          flags:

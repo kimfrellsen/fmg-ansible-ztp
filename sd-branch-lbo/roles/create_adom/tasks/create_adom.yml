@@ -1,5 +1,6 @@
 - name: CREATE ADOM "{{ adom_name }}"
   fmgr_dvmdb_adom:
+     workspace_locking_adom: '{{ adom_name }}'
      state: present
      dvmdb_adom:
         name: '{{ adom_name }}'

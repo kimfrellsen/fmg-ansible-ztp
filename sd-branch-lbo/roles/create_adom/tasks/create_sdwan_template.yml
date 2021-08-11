@@ -1,5 +1,6 @@
 - name: CREATE SD-WAN TEMPLATE "{{ sdwan_template_name }}"
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: "set"
      params:
        - url: "/pm/wanprof/adom/{{ adom_name }}"
@@ -11,6 +12,7 @@
 
 - name: ADD MEMBERS to SDWAN TEMPLATE "{{ sdwan_template_name }}"
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: "set"
      params:
        - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/members"
@@ -26,6 +28,7 @@
 
 - name: ADDING HEALTH CHECK IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: "set"
      params:
        - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/health-check"
@@ -43,6 +46,7 @@
 
 - name: UPDATE Default_Office_365 HEALTH CHECK IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: "update"
      params:
        - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/health-check"
@@ -57,6 +61,7 @@
 
 - name: ADDING SD-WAN RULE "{{ sdwan_health_check_O365_name }}" IN SDWAN TEMPLATE "{{ sdwan_template_name }}"
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: "set"
      params:
        - url: "/pm/config/adom/{{ adom_name }}/wanprof/{{ sdwan_template_name }}/system/sdwan/service"

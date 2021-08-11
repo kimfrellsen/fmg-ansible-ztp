@@ -1,6 +1,7 @@
 - name: CREATE SYSTEM TEMPLATE {{ system_template_name }}
   fmgr_pm_devprof_adom:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     pm_devprof_adom:
       description: "System Template created via Ansible"
       name: "{{ system_template_name }}"
@@ -13,6 +14,7 @@
 - name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - SYSTEM.GLOBAL
   fmgr_devprof_system_global:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     devprof: "{{ system_template_name }}"
     devprof_system_global:
        admintimeout: 480
@@ -22,8 +24,9 @@
 
 - name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - SYSTEM.DNS
   fmgr_devprof_system_dns:
-    bypass_validation: True
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
+    bypass_validation: True
     devprof: "{{ system_template_name }}"
     devprof_system_dns:
        primary: "8.8.8.8"
@@ -33,6 +36,7 @@
 - name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER
   fmgr_devprof_device_profile_fortianalyzer:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     devprof: "{{ system_template_name }}"
     devprof_device_profile_fortianalyzer:
        managed-sn: ""
@@ -43,6 +47,7 @@
 - name: SET SYSTEM TEMPLATE "{{ system_template_name }}" - FORTIANALYZER SETTINGS
   fmgr_devprof_log_fortianalyzer_setting:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     devprof: "{{ system_template_name }}"
     devprof_log_fortianalyzer_setting:
        ips-archive: enable

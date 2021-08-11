@@ -1,5 +1,6 @@
 - name: CREATE FORTISWITCH TEMPLATE "{{ fsw_name }}"
   fmgr_switchcontroller_managedswitch:
+     workspace_locking_adom: "{{ adom_name }}"
      state: present
      adom: "{{ adom_name }}"
      switchcontroller_managedswitch:

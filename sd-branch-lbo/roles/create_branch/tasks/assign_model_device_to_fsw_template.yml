@@ -1,10 +1,11 @@
 - name: ASSIGN MODEL DEVICE "{{ device_name }}" TO FORTISWITCH TEMPLATE "{{ fsw_name }}"
   fmgr_generic:
-     method: update
-     params:
-       - url: "/pm/config/adom/{{ adom_name }}/obj/fsp/managed-switch/{{ fsw_sn }}"
-         data:
-           template: "{{ fsw_profile_name }}"
-         scope member:
-           - name: "{{ device_name }}"
-             vdom: "{{ device_vdom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
+    method: update
+    params:
+     - url: "/pm/config/adom/{{ adom_name }}/obj/fsp/managed-switch/{{ fsw_sn }}"
+       data:
+         template: "{{ fsw_profile_name }}"
+       scope member:
+         - name: "{{ device_name }}"
+           vdom: "{{ device_vdom_name }}"

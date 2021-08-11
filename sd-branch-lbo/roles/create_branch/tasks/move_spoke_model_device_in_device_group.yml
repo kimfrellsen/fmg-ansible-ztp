@@ -1,5 +1,6 @@
 - name: MOVE DEVICE "{{ device_name }}" IN GROUP "{{ spoke_group_name }}"
   fmgr_generic:
+     workspace_locking_adom: "{{ adom_name }}"
      method: add
      params:
        - url: "/dvmdb/adom/{{ adom_name }}/group/{{ spoke_group_name }}/object member"

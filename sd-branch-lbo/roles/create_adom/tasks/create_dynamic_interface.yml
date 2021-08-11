@@ -1,6 +1,7 @@
 - name: CREATE NORMALIZED INTERFACE MAPPED WITH DEFAULT MAPPING
   fmgr_dynamic_interface:
      adom: "{{ adom_name }}"
+     workspace_locking_adom: "{{ adom_name }}"
      state: present
      dynamic_interface:
         name: "{{ item.name }}"

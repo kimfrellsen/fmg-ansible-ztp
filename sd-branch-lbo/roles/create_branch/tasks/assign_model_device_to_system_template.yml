@@ -1,9 +1,10 @@
 - name: ASSIGN MODEL DEVICE "{{ device_name }}" TO SYSTEM TEMPLATE "{{ system_template_name }}"
   fmgr_generic:
-     method: "add"
-     params:
-       - url: "/pm/devprof/adom/{{ adom_name }}/{{ system_template_name }}/scope member"
-         data:
-            -
-              name: "{{ device_name }}"
-              vdom: "{{ device_vdom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
+    method: "add"
+    params:
+      - url: "/pm/devprof/adom/{{ adom_name }}/{{ system_template_name }}/scope member"
+        data:
+          -
+            name: "{{ device_name }}"
+            vdom: "{{ device_vdom_name }}"

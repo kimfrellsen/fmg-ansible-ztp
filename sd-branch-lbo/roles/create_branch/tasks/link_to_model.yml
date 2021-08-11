@@ -1,6 +1,7 @@
 - name: ENABLE AUTO LINK AND SET COORDINATES FOR DEVICE "{{ device_name }}"
   fmgr_dvmdb_device:
     adom: "{{ adom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
     device: "{{ device_name }}"
     dvmdb_device:
       latitude: "{{ device_latitude }}"

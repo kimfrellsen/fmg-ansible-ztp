@@ -1,5 +1,6 @@
 - name: DELETE ADOM "{{ adom_name }}"
   fmgr_dvmdb_adom:
+     workspace_locking_adom: "{{ adom_name }}"
      state: absent
      dvmdb_adom:
         name: '{{ adom_name }}'

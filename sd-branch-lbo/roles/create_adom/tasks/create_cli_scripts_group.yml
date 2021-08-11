@@ -1,6 +1,7 @@
 - name: CREATE CLI SCRIPTS GROUPS
   fmgr_dvmdb_script:
         adom: "{{ adom_name }}"
+        workspace_locking_adom: "{{ adom_name }}"
         state: present
         dvmdb_script:
            content: ""
@@ -19,6 +20,7 @@
 - name: ADD MEMBERS TO SCRIPT GROUP
   fmgr_dvmdb_script_objectmember:
         adom: "{{ adom_name }}"
+        workspace_locking_adom: "{{ adom_name }}"
         script: "{{ cli_script_group_name }}"
         state: present
         dvmdb_script_objectmember:

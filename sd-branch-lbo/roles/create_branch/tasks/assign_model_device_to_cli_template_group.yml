@@ -1,5 +1,6 @@
 - name: ASSIGN MODEL DEVICE "{{ device_name }}" TO CLI TEMPLATE GROUP "{{ cli_template_group_name }}"
   fmgr_generic:
+    workspace_locking_adom: "{{ adom_name }}"
     method: add
     params:
      - url: "/pm/config/adom/{{ adom_name }}/obj/cli/template-group/{{ cli_template_group_name }}/scope member"

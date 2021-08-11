@@ -1,5 +1,6 @@
 - name: CREATE DEVICE META FIELDS
   fmgr_dvmdb_metafields_device:
+     workspace_locking_adom: "{{ adom_name }}"
      dvmdb_metafields_device:
         importance: optional
         name: "{{ item.name }}"

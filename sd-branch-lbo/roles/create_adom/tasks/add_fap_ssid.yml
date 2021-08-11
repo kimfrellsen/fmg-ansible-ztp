@@ -1,6 +1,7 @@
 - name: ADD FORTIAP SSID FOR PRODUCTION TRAFFIC
   fmgr_vap:
      adom: "{{ adom_name }}"
+     workspace_locking_adom: "{{ adom_name }}"
      state: present
      vap:
         name: "{{ item.name }}"

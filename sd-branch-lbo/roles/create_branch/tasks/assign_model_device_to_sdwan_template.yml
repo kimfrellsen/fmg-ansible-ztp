@@ -1,9 +1,10 @@
 - name: ASSIGN SD-WAN TEMPLATE "{{ sdwan_template_name }}" TO MODEL DEVICE "{{ device_name }}"
   fmgr_generic:
-     method: "add"
-     params:
-       - url: "/pm/wanprof/adom/{{ adom_name }}/{{ sdwan_template_name }}/scope member"
-         data:
-            -
-              name: "{{ device_name }}"
-              vdom: "{{ device_vdom_name }}"
+    workspace_locking_adom: "{{ adom_name }}"
+    method: "add"
+    params:
+      - url: "/pm/wanprof/adom/{{ adom_name }}/{{ sdwan_template_name }}/scope member"
+        data:
+          -
+            name: "{{ device_name }}"
+            vdom: "{{ device_vdom_name }}"
