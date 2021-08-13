@@ -53,3 +53,10 @@
        ips-archive: enable
        reliable: enable
        upload-option: realtime
+
+# uncomment if if workspacemode=normal
+#TODO: conditional execution of this task, only run if workspacemode=normal
+#- name: Commit System Template {{ system_template_name }}
+#  fmgr_dvmdb_workspace_commit:
+#    workspace_locking_adom: "{{ adom_name }}"
+#    adom: "{{ adom_name }}"
