@@ -15,3 +15,6 @@ How to use:
 Deleting branches or adoms with these commands: "ansible-playbook -i hosts delete_branch1.yml delete_adom.yml"
 
 enjoy :)
+
+
+Note: The playbooks now support FortiManager workspace mode. Only change required to support it is to uncomment the commit task in roles/create_adom/tasks/create_system_template.yml.
